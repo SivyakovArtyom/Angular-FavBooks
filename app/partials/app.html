@@ -8,27 +8,26 @@
   <ul class="list-unstyled col-sm-8">
     <li class="book row" ng-repeat="book in readingListCtrl.books">
       <aside class="col-sm-3">
-        <h3><a href="http://www.amazon.com/gp/product/0553593714"
-            ><img ng-src="https://images-na.ssl-images-amazon.com/images/I/51KzcuZMlzL._SX304_BO1,204,203,200_.jpg" alt="Cover of Book Title" class="full"></a>
-          </h3>
-          <p class='goodRating rating'>5/5</p>
+            <a href="http://www.amazon.com/gp/product/{{book.isbn}}">
+                <img ng-src="http://images.amazon.com/images/P/{{book.isbn}}.01.ZTZZZZZZ.jpg" alt="Cover of {{book.title}}" class="full">
+            </a>
+          <p class="goodRating rating">{{book.rating}}/5</p>
         </aside>
 
         <div class="col-sm-9">
-        <h3><a href="http://www.amazon.com/gp/product/0553593714">Book Title</a>
-            </h3>
+            <h3><a href="http://www.amazon.com/gp/product/{{book.isbn}}">{{book.title}}</a></h3>
+            <cite class="text-muted">Written by Author here</cite>
 
-        <cite class="text-muted">Written by Author here</cite>
-
-          <p>Book Review</p>
-          <ul class="list-unstyled">
-              <li>
-                  <span  class="label label-primary">genre</span>
-              </li>
-          </ul>
-
-
+            <p>{{book.review}}</p>
+            <ul class="list-unstyled">
+            <li>
+                <span class="label label-primary" ng-repeat="(gener, state) in book.genres" ng-show="state">{{gener}}</span>
+            </li>
+            </ul>
+        </div>
 
     </li>
+
   </ul>
 </div>
+
