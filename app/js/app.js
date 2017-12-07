@@ -2,9 +2,23 @@
 
 'use strict';
 // Declare app level module which depends on views, and components
-angular.module('readingList', []).controller('ReadingListController', function(){
+angular.module('readingList', [])
+    .controller('ReadingListController', function(){
         this.books = books;
         this.genres = genres;
+})
+    .directive('bookGeners', function(){
+    return{
+        restritc: 'E',
+        templateUrl: 'partials/book-geners.html'
+    }
+})
+    .directive('bookCover', function(){
+    return{
+        restritc: 'E',
+        templateUrl: 'partials/book-cover.html',
+        replace: true
+    }
 });
 
 
