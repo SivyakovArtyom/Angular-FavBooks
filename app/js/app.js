@@ -19,6 +19,13 @@ angular.module('readingList', [])
         templateUrl: 'partials/book-cover.html',
         replace: true
     }
+})
+    .directive('reviewForm', function(){
+    return{
+        restritc: 'E',
+        templateUrl: 'partials/review-form.html',
+        replace: true
+    }
 });
 
 
