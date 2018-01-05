@@ -10,7 +10,10 @@ angular.module('readingList', [])
     .directive('bookGeners', function(){
     return{
         restritc: 'E',
-        templateUrl: 'partials/book-geners.html'
+        templateUrl: 'partials/book-geners.html',
+        scope:{
+            genres: "="
+        }
     }
 })
     .directive('bookCover', function(){
