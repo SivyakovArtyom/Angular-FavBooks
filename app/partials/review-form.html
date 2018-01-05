@@ -3,58 +3,68 @@
     <section class="row well live-preview">
     <aside class="col-sm-3">
 
+      <a href="http://www.amazon.com/gp/product/{{reviewFormCtrl.book.isbn}}"><img ng-src="http://images.amazon.com/images/P/{{reviewFormCtrl.book.isbn}}.01.ZTZZZZZZ.jpg" alt="Cover of {{reviewFormCtrl.book.title}}" class="full"></a>
 
-      <a href="http://www.amazon.com/gp/product/0553593714"><img ng-src="http://images.amazon.com/images/P/0553593714.01.ZTZZZZZZ.jpg" alt="Cover of {{reviewFormCtrl.book.title}}" class="full"></a>
 
-
-      <p>0/5</p>
+      <p>{{reviewFormCtrl.book.rating}}/5</p>
     </aside>
     <div class="col-sm-9">
-      <h3><a href="http://www.amazon.com/gp/product/0553593714"
-          >"Title of Book"</a></h3>
+      <h3><a href="http://www.amazon.com/gp/product/{{reviewFormCtrl.book.isbn}}"
+          >{{reviewFormCtrl.book.title}}</a></h3>
 
-      <cite class="text-muted">Written by Author's Name</cite>
+      <cite class="text-muted">Written by {{reviewFormCtrl.book.author}}</cite>
 
 
 
-      <p>No review yet</p>
+      <p>{{reviewFormCtrl.book.review}}</p>
 
 
       <ul class="list-unstyled">
-        <li>
-          <span class="label label-primary">genre</span>
+        <li ng-repeat="(genre,state) in reviewFormCtrl.book.genres">
+          <span class="label label-primary">{{genre}}</span>
         </li>
       </ul>
 
     </div>
   </section>
 
+<div class="input-container">
   <fieldset class="form-group">
-    <label for="title" class="col-sm-1 control-label">Title:</label>
-    <span class="col-sm-10">
+    <label for="title" class="col-sm-2 control-label">Title:</label>
+    <span class="col-sm-9">
       <input type="text" class="form-control" id="title"
-          placeholder="The title of your book goes here...">
+          placeholder="Book Title" ng-model="reviewFormCtrl.book.title">
     </span>
   </fieldset>
+
   <fieldset class="form-group">
-    <label for="isbn" class="control-label col-sm-1">ISBN-10:</label>
-    <span class="col-sm-10">
+    <label for="isbn" class="control-label col-sm-2">ISBN-10:</label>
+    <span class="col-sm-9">
       <input type="text" id="isbn" class="form-control"
           max-length="10" min-length="10"
-          placeholder="no dashes, e.g. 1234567890">
+          placeholder="ISBN-10" ng-model="reviewFormCtrl.book.isbn">
     </span>
   </fieldset>
+
   <fieldset class="form-group">
-    <label class="control-label col-sm-1" for="review">Review</label>
-    <span class="col-sm-10">
+    <label class="control-label col-sm-2" for="author">Author:</label>
+    <span class="col-sm-9">
+      <input type="text" id="author" class="form-control" placeholder="Author" ng-model="reviewFormCtrl.book.author">
+    </span>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label class="control-label col-sm-2" for="review">Review:</label>
+    <span class="col-sm-9">
       <textarea id="review" class="form-control" cols="30" rows="3"
-          placeholder="Your review goes here..."></textarea>
+          placeholder="Review" ng-model="reviewFormCtrl.book.review"></textarea>
     </span>
   </fieldset>
+
   <fieldset class="form-group">
-    <label for="rating" class="control-label col-sm-1">Rating:</label>
-    <span class="col-sm-10">
-      <select class="form-control" id="rating" value="5">
+    <label for="rating" class="control-label col-sm-2">Rating:</label>
+    <span class="col-sm-9">
+      <select class="form-control" id="rating" value="5" ng-model="reviewFormCtrl.book.rating">
         <option>5</option>
         <option>4</option>
         <option>3</option>
@@ -63,13 +73,23 @@
       </select>
     </span>
   </fieldset>
+
+   <fieldset class="form-group">
+      <label class="control-label col-sm-2" >Genre:</label>
+      <div class="genre">
+        <label ng-repeat="genre in genres" for="{{genre}}" class="genre-label form-control">
+          <input type="checkbox" name="genre" id="{{genre}}" ng-model="reviewFormCtrl.book.genres[genre]" />
+          {{genre}}
+        </label>
+      </div>
+    </fieldset>
+
+
   <fieldset class="form-group">
-    <label class="control-label col-sm-1" for="genre">Genre</label>
-    <span class="col-sm-10"><select id="genre" class="form-control"><option value="">Select genre...</option></select></span>
-  </fieldset>
-  <fieldset class="form-group">
-    <span class="col-sm-10 col-sm-offset-1">
+    <span class="col-sm-9 col-sm-offset-2">
       <button class="btn btn-primary">Save Review</button>
     </span>
   </fieldset>
+
+</div>
 </form>

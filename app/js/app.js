@@ -26,13 +26,14 @@ angular.module('readingList', [])
         templateUrl: 'partials/review-form.html',
         replace: true,
         controller: function(){
-            this.books = books;
             this.book = {genres:{}};
             this.showForm = false;
-            this.genres = genres;
-            //this.showForm = false;
         },
-        controllerAs: 'reviewFormCtrl'
+        controllerAs: 'reviewFormCtrl',
+        scope: {
+            books: "=",
+            genres: "="
+        }
     }
 });
 
