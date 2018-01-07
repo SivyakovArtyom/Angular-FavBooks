@@ -7,10 +7,10 @@ angular.module('readingList', [])
         this.books = books;
         this.genres = genres;
 })
-    .directive('bookGeners', function(){
+    .directive('bookGenres', function(){
     return{
         restritc: 'E',
-        templateUrl: 'partials/book-geners.html',
+        templateUrl: 'partials/book-genres.html',
         scope:{
             genres: "="
         }
@@ -31,6 +31,11 @@ angular.module('readingList', [])
         controller: function(){
             this.book = {genres:{}};
             this.showForm = false;
+            this.addReview = function(form){
+                books.push(this.book);
+                this.book = {genres:{}};
+                form.$setPrestine();
+            }
         },
         controllerAs: 'reviewFormCtrl',
         scope: {
@@ -72,6 +77,13 @@ var books = [
       review: 'The Wheel weaves as the Wheel wills, and we are only the thread of the Pattern. Moiraine',
       rating: 4,
       genres: { 'non-fiction': true, fantasy: true }
+    },{
+        genres: { 'non-fiction': true, fantasy: true },
+      title: 'B0761MGHSV',
+      author: 'B0761MGHSV',
+      isbn: "B0761MGHSV",
+      review: 'The Wheel weaves as the Wheel wills, and we are only and we are only',
+      rating: 1
     }
   ];
 })();

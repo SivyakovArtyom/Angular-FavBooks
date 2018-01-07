@@ -1,35 +1,29 @@
-<form name="reviewForm" class="form-horizontal">
+<form name="reviewForm" class="form-horizontal" ng-submit="reviewFormCtrl.addReview(reviewForm)">
 
-    <section class="row well live-preview">
+    <section class="row well live-preview" ng-show="reviewFormCtrl.book.isbn">
     <aside class="col-sm-3">
 
-      <a href="http://www.amazon.com/gp/product/{{reviewFormCtrl.book.isbn}}"><img ng-src="http://images.amazon.com/images/P/{{reviewFormCtrl.book.isbn}}.01.ZTZZZZZZ.jpg" alt="Cover of {{reviewFormCtrl.book.title}}" class="full"></a>
-
+      <a href="http://www.amazon.com/gp/product/{{reviewFormCtrl.book.isbn}}"><img ng-src="http://images.amazon.com/images/P/{{reviewFormCtrl.book.isbn}}.01.ZTZZZZZZ.jpg" class="full" alt="Cover of {{reviewFormCtrl.book.title}}"></a>
 
       <p>{{reviewFormCtrl.book.rating}}/5</p>
     </aside>
+
     <div class="col-sm-9">
       <h3><a href="http://www.amazon.com/gp/product/{{reviewFormCtrl.book.isbn}}"
           >{{reviewFormCtrl.book.title}}</a></h3>
 
       <cite class="text-muted">Written by {{reviewFormCtrl.book.author}}</cite>
 
-
-
       <p>{{reviewFormCtrl.book.review}}</p>
 
-
-      <ul class="list-unstyled">
-        <li ng-repeat="(genre,state) in reviewFormCtrl.book.genres">
-          <span class="label label-primary">{{genre}}</span>
-        </li>
-      </ul>
+      <book-genres genres="reviewFormCtrl.book.genres"></book-genres>
 
     </div>
   </section>
 
 <div class="input-container">
-  <fieldset class="form-group">
+
+    <fieldset class="form-group">
     <label for="title" class="col-sm-2 control-label">Title:</label>
     <span class="col-sm-9">
       <input type="text" class="form-control" id="title"
